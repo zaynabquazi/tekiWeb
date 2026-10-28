@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Help — Teki</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">Teki</a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="your-helper.html">Your helper</a>
+        <a href="plans.html">Plans</a>
+        <a href="help.html" class="active" aria-current="page">Help</a>
+        <a href="app.html">Sign in</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="container" aria-labelledby="help-title">
+      <h1 id="help-title">What would you like help with?</h1>
+
+      <p>
+        <label for="help-search">Search help</label>
+        <input type="search" id="help-search" name="help-search" placeholder='Search help, for example "change voice"'>
+      </p>
+      <p><em>This search box is a visual placeholder and does not return results yet.</em></p>
+    </section>
+
+    <section class="container" aria-labelledby="topics-title">
+      <h2 id="topics-title">Help topics</h2>
+      <div class="topic-grid">
+        <div class="card card--mint">
+          <h3>Getting started</h3>
+          <p>Set up Teki and take your first steps with a gentle walkthrough.</p>
+        </div>
+        <div class="card card--lavender">
+          <h3>Change Teki's voice</h3>
+          <p>Pick the voice that feels most comfortable and easy to understand.</p>
+        </div>
+        <div class="card card--blue">
+          <h3>Change Teki's look</h3>
+          <p>Adjust colours and text size so the screen is easy on your eyes.</p>
+        </div>
+        <div class="card card--grey">
+          <h3>Connect your helper</h3>
+          <p>Invite a trusted person so they can support you when you ask.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" aria-labelledby="tutorial-title">
+      <h2 id="tutorial-title">Watch a quick tutorial</h2>
+
+      <div class="media-placeholder" id="tutorial-video" role="group" aria-label="Video preview">
+        <svg width="160" height="120" viewBox="0 0 160 120" role="img" aria-label="Placeholder for the Teki walkthrough video">
+          <rect x="1" y="1" width="158" height="118" rx="12" fill="none" stroke="currentColor" stroke-width="2"></rect>
+          <text x="80" y="64" text-anchor="middle" fill="currentColor" font-size="14">Video preview</text>
+        </svg>
+        <p>Start with Teki — A short walkthrough by Zaynab.</p>
+        <p>
+          <button type="button" class="btn btn-primary" data-toggle="play" aria-pressed="false" aria-controls="tutorial-video" data-label-on="Pause" data-label-off="Play">Play</button>
+          <button type="button" class="btn btn-secondary" data-toggle="play" data-mode="captions" aria-pressed="false" aria-controls="tutorial-video" data-label-on="Captions on" data-label-off="Captions">Captions</button>
+        </p>
+      </div>
+
+      <h3>Written step-by-step version</h3>
+      <ol class="steps">
+        <li>
+          <h4>Open Teki</h4>
+          <p>Start Teki from your home screen or browser. [Placeholder step]</p>
+        </li>
+        <li>
+          <h4>Say hello</h4>
+          <p>Tell Teki what you would like to do today. [Placeholder step]</p>
+        </li>
+        <li>
+          <h4>Follow along</h4>
+          <p>Work through Teki's guidance one step at a time. [Placeholder step]</p>
+        </li>
+      </ol>
+
+      <h3>Transcript</h3>
+      <p>Hi, I'm Zaynab. In this short walkthrough I'll show you how to start with Teki and get help with everyday technology, one step at a time. [Placeholder transcript]</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Teki &mdash; a gentle helper for getting things done.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
