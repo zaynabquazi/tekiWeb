@@ -26,8 +26,9 @@
     <section class="container reveal" aria-labelledby="help-title">
       <h1 id="help-title">What would you like help with?</h1>
 
-      <p>
+      <p class="search-box">
         <label for="help-search">Search help</label>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
         <input type="search" id="help-search" name="help-search" placeholder='Search help, for example "change voice"'>
       </p>
       <p><em>This search box is a visual placeholder and does not return results yet.</em></p>
@@ -37,18 +38,30 @@
       <h2 id="topics-title">Help topics</h2>
       <div class="topic-grid">
         <div class="card card--mint reveal reveal--d1">
+          <span class="card__icon" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3c3.5 2 5 5.5 5 9l-5 5-5-5c0-3.5 1.5-7 5-9Z"/><circle cx="12" cy="10" r="1.6"/><path d="M8.5 16 6 20M15.5 16 18 20"/></svg>
+          </span>
           <h3>Getting started</h3>
           <p>Set up Teki and take your first steps with a gentle walkthrough.</p>
         </div>
         <div class="card card--lavender reveal reveal--d2">
+          <span class="card__icon" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9v6h3l5 4V5L7 9H4Z"/><path d="M16 8.5a4 4 0 0 1 0 7M18.5 6a7 7 0 0 1 0 12"/></svg>
+          </span>
           <h3>Change Teki's voice</h3>
           <p>Pick the voice that feels most comfortable and easy to understand.</p>
         </div>
         <div class="card card--blue reveal reveal--d3">
+          <span class="card__icon" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3a9 9 0 0 0 0 18c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.2 0-.8.7-1.5 1.5-1.5H17a4 4 0 0 0 4-4c0-4.4-4-8-9-8Z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16.5" cy="10.5" r="1"/></svg>
+          </span>
           <h3>Change Teki's look</h3>
           <p>Adjust colours and text size so the screen is easy on your eyes.</p>
         </div>
         <div class="card card--grey reveal reveal--d3">
+          <span class="card__icon" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 12a3 3 0 0 0 4.2 0l2.3-2.3a3 3 0 0 0-4.2-4.2L10 6.8"/><path d="M15 12a3 3 0 0 0-4.2 0l-2.3 2.3a3 3 0 0 0 4.2 4.2L14 17.2"/></svg>
+          </span>
           <h3>Connect your helper</h3>
           <p>Invite a trusted person so they can support you when you ask.</p>
         </div>
@@ -58,36 +71,40 @@
     <section class="container reveal" aria-labelledby="tutorial-title">
       <h2 id="tutorial-title">Watch a quick tutorial</h2>
 
-      <div class="media-placeholder" id="tutorial-video" role="group" aria-label="Video preview">
-        <svg width="160" height="120" viewBox="0 0 160 120" role="img" aria-label="Placeholder for the Teki walkthrough video">
-          <rect x="1" y="1" width="158" height="118" rx="12" fill="none" stroke="currentColor" stroke-width="2"></rect>
-          <text x="80" y="64" text-anchor="middle" fill="currentColor" font-size="14">Video preview</text>
-        </svg>
-        <p>Start with Teki — A short walkthrough by Zaynab.</p>
-        <p>
-          <button type="button" class="btn btn-primary" data-toggle="play" aria-pressed="false" aria-controls="tutorial-video" data-label-on="Pause" data-label-off="Play">Play</button>
-          <button type="button" class="btn btn-secondary" data-toggle="play" data-mode="captions" aria-pressed="false" aria-controls="tutorial-video" data-label-on="Captions on" data-label-off="Captions">Captions</button>
-        </p>
+      <div class="media-card">
+        <div class="media-placeholder" id="tutorial-video" role="group" aria-label="Video preview">
+          <svg width="160" height="120" viewBox="0 0 160 120" role="img" aria-label="Placeholder for the Teki walkthrough video">
+            <rect x="1" y="1" width="158" height="118" rx="12" fill="none" stroke="currentColor" stroke-width="2"></rect>
+            <text x="80" y="64" text-anchor="middle" fill="currentColor" font-size="14">Video preview</text>
+          </svg>
+          <p>Start with Teki — A short walkthrough by Zaynab.</p>
+          <p>
+            <button type="button" class="btn btn-primary" data-toggle="play" aria-pressed="false" aria-controls="tutorial-video" data-label-on="Pause" data-label-off="Play">Play</button>
+            <button type="button" class="btn btn-secondary" data-toggle="play" data-mode="captions" aria-pressed="false" aria-controls="tutorial-video" data-label-on="Captions on" data-label-off="Captions">Captions</button>
+          </p>
+        </div>
+
+        <h3>Written step-by-step version</h3>
+        <ol class="steps">
+          <li>
+            <h4>Open Teki</h4>
+            <p>Start Teki from your home screen or browser. [Placeholder step]</p>
+          </li>
+          <li>
+            <h4>Say hello</h4>
+            <p>Tell Teki what you would like to do today. [Placeholder step]</p>
+          </li>
+          <li>
+            <h4>Follow along</h4>
+            <p>Work through Teki's guidance one step at a time. [Placeholder step]</p>
+          </li>
+        </ol>
+
+        <div class="transcript">
+          <h3>Transcript</h3>
+          <p>Hi, I'm Zaynab. In this short walkthrough I'll show you how to start with Teki and get help with everyday technology, one step at a time. [Placeholder transcript]</p>
+        </div>
       </div>
-
-      <h3>Written step-by-step version</h3>
-      <ol class="steps">
-        <li>
-          <h4>Open Teki</h4>
-          <p>Start Teki from your home screen or browser. [Placeholder step]</p>
-        </li>
-        <li>
-          <h4>Say hello</h4>
-          <p>Tell Teki what you would like to do today. [Placeholder step]</p>
-        </li>
-        <li>
-          <h4>Follow along</h4>
-          <p>Work through Teki's guidance one step at a time. [Placeholder step]</p>
-        </li>
-      </ol>
-
-      <h3>Transcript</h3>
-      <p>Hi, I'm Zaynab. In this short walkthrough I'll show you how to start with Teki and get help with everyday technology, one step at a time. [Placeholder transcript]</p>
     </section>
   </main>
 

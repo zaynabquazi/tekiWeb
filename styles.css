@@ -610,6 +610,295 @@ main > section:first-child h1 + p {
   white-space: nowrap;
 }
 
+/* ---- Inline SVG icon utility -------------------------------------------- */
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Icon slot above a card/panel heading. */
+.card__icon,
+.panel__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+}
+
+.card__icon .icon,
+.panel__icon .icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+/* ---- Iconic stepper (how-it-works) -------------------------------------- */
+.steps--iconic {
+  gap: var(--space-6);
+}
+
+.steps--iconic > li {
+  padding: var(--space-5) var(--space-5) var(--space-5)
+    calc(var(--space-7) + var(--space-5));
+  border-radius: var(--radius-lg);
+  background: var(--bg-soft);
+  border: 1px solid var(--card-grey);
+  box-shadow: var(--shadow);
+}
+
+.steps--iconic > li::before {
+  left: var(--space-5);
+  top: var(--space-5);
+}
+
+/* Per-step icon sits to the right of the badge, aligned with the heading. */
+.step__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius);
+  background: var(--tint-blue);
+  color: var(--blue);
+}
+
+/* ---- Feature band (full-width soft mission panel) ----------------------- */
+.feature-band {
+  padding: var(--space-7);
+  border-radius: var(--radius-lg);
+  background: var(--tint-mint);
+}
+
+.feature-band > :last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Timeline (connecting-line numbered stepper) ------------------------ */
+.timeline {
+  list-style: none;
+  counter-reset: tl;
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  display: grid;
+  gap: var(--space-5);
+}
+
+.timeline > li {
+  counter-increment: tl;
+  position: relative;
+  padding-left: calc(var(--space-7) + var(--space-4));
+  min-height: var(--space-7);
+}
+
+.timeline > li::before {
+  content: counter(tl);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: var(--space-7);
+  height: var(--space-7);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #ffffff; /* white on #0867ca ~5.5:1 — passes AA */
+  font-weight: 700;
+}
+
+/* Connecting vertical line between badges. */
+.timeline > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--space-7) / 2 - 1px);
+  top: var(--space-7);
+  bottom: calc(var(--space-5) * -1);
+  width: 2px;
+  background: var(--card-blue);
+}
+
+.timeline > li h3 {
+  margin: 0;
+  padding-top: calc((var(--space-7) - 1.2em) / 2);
+}
+
+/* ---- Icon-checked list -------------------------------------------------- */
+.check-list {
+  list-style: none;
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.check-list > li {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.check-list .icon {
+  color: var(--blue);
+  margin-top: 0.15em;
+}
+
+/* ---- Plan card: elevated centerpiece ------------------------------------ */
+.plan-card--feature {
+  max-width: 34rem;
+  margin-inline: auto;
+  padding: var(--space-7);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  gap: var(--space-4);
+}
+
+.plan-price {
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
+  border-bottom: 1px solid var(--card-grey);
+}
+
+.plan-price h2 {
+  margin-bottom: var(--space-2);
+}
+
+.plan-price p {
+  margin-bottom: 0;
+  font-size: 1.375rem;
+  color: var(--blue);
+}
+
+/* ---- FAQ accordion ------------------------------------------------------ */
+.faq details {
+  border-bottom: 1px solid var(--card-grey);
+}
+
+.faq details:first-of-type {
+  border-top: 1px solid var(--card-grey);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 44px;
+  padding: var(--space-4) var(--space-2);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.125rem;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+/* CSS-drawn rotating chevron indicator. */
+.faq summary::after {
+  content: "";
+  flex: none;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-right: 2px solid var(--blue);
+  border-bottom: 2px solid var(--blue);
+  transform: rotate(45deg);
+  transition: transform 0.2s var(--ease-out);
+}
+
+.faq details[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+.faq details > p {
+  margin: 0 0 var(--space-4);
+  padding-inline: var(--space-2);
+  max-width: 65ch;
+}
+
+/* ---- Search box (help) -------------------------------------------------- */
+.search-box {
+  position: relative;
+  max-width: 34rem;
+  margin-bottom: var(--space-3);
+}
+
+.search-box label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+}
+
+.search-box .icon {
+  position: absolute;
+  left: var(--space-4);
+  bottom: 0.85rem;
+  color: var(--blue);
+  pointer-events: none;
+}
+
+.search-box input {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--space-3) var(--space-4) var(--space-3)
+    calc(var(--space-6) + var(--space-4));
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg);
+  border: 2px solid var(--card-grey);
+  border-radius: 999px;
+  transition: border-color 0.2s var(--ease-out),
+    box-shadow 0.2s var(--ease-out);
+}
+
+.search-box input:focus {
+  border-color: var(--blue);
+}
+
+.search-box input:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* ---- Media card (help tutorial) ----------------------------------------- */
+.media-card {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--bg-soft);
+  border: 1px solid var(--card-grey);
+  box-shadow: var(--shadow);
+}
+
+.media-card .media-placeholder {
+  margin-bottom: var(--space-6);
+}
+
+.transcript {
+  margin-top: var(--space-4);
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  background: var(--tint-blue);
+  border: 1px solid var(--card-grey);
+}
+
+.transcript > :last-child {
+  margin-bottom: 0;
+}
+
 /* ---- Accessibility: focus -------------------------------------------------
    Visible focus indicator. Never removed without a visible replacement. */
 :focus-visible {
@@ -697,6 +986,16 @@ html.js-reveal .reveal.is-visible.reveal--d3 {
 
   /* Suppress the header's shadow/border transition (end state is allowed). */
   .site-header {
+    transition: none !important;
+  }
+
+  /* FAQ chevron: no rotation animation (open/closed end state still shown). */
+  .faq summary::after {
+    transition: none !important;
+  }
+
+  /* Search field: no focus transition. */
+  .search-box input {
     transition: none !important;
   }
 }
