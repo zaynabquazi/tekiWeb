@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Account — Teki</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">Teki</a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="your-helper.html">Your helper</a>
+        <a href="plans.html">Plans</a>
+        <a href="help.html">Help</a>
+        <a href="app.html" class="active" aria-current="page">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="container" aria-label="Mockup notice">
+      <p class="notice" role="note">This is a proposed interface mockup, not a working account. The chat and controls below are for layout only and do not send or save anything yet.</p>
+    </section>
+
+    <section class="container" aria-labelledby="workspace-title">
+      <h1 id="workspace-title">What can Teki help you with?</h1>
+
+      <div class="app-layout">
+        <div class="chat" aria-labelledby="chat-title">
+          <h2 id="chat-title" class="visually-hidden">Chat with Teki</h2>
+
+          <div class="chat-bubble" role="group" aria-label="Message from Teki">
+            <p class="chat-from">Teki</p>
+            <p>Tell me what is happening, and we can take it one step at a time. Example: My Wi-Fi keeps disconnecting.</p>
+          </div>
+
+          <form class="chat-input" aria-label="Send a message to Teki (mockup)">
+            <label for="chat-message">Type your question...</label>
+            <input type="text" id="chat-message" name="chat-message" placeholder="Type your question..." disabled>
+            <button type="button" class="btn btn-primary" disabled>Send</button>
+          </form>
+        </div>
+
+        <aside class="app-side" aria-labelledby="side-title">
+          <h2 id="side-title" class="visually-hidden">Your account</h2>
+
+          <div class="panel" aria-labelledby="helper-title">
+            <h3 id="helper-title">Your helper</h3>
+            <p>No helper connected yet. Choose someone you trust.</p>
+            <p><button type="button" class="btn btn-secondary">Choose a helper</button></p>
+          </div>
+
+          <div class="panel" aria-labelledby="prefs-title">
+            <h3 id="prefs-title">Preferences</h3>
+            <ul class="prefs-list">
+              <li>Voice and appearance</li>
+              <li>Text size and motion</li>
+              <li>Help and tutorials</li>
+            </ul>
+          </div>
+
+          <div class="panel" aria-labelledby="helper-view-title">
+            <h3 id="helper-view-title">Helper view</h3>
+            <p>When a helper is connected, this shows the people you trust and the issue summaries you have approved for sharing. Nothing is shared until you choose to share it.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Teki &mdash; a gentle helper for getting things done.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

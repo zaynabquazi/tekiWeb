@@ -1,0 +1,41 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "The signed-in workspace mockup app.html, plus a final site-wide accessibility and consistency pass across all six pages. app.html reuses the shared layout but with the last nav link reading 'Account' (not 'Sign in'). Depends on FEAT-001 (shared assets/layout) and FEAT-002 (so the final consistency pass can compare all public pages).",
+  "status": "completed",
+  "steps": [
+    "Create app.html: copy the shared layout block but change the last nav link text from 'Sign in' to 'Account' (target stays app.html) and mark it aria-current='page' / active. Add a visible note at the top of <main> that this is a proposed interface mockup, not built account features.",
+    "In app.html build the chat mockup under a heading 'What can Teki help you with?': a Teki message bubble with the exact copy 'Tell me what is happening, and we can take it one step at a time. Example: My Wi-Fi keeps disconnecting.', a text input labeled 'Type your question...' and a 'Send' button — all non-functional mockup (buttons may be disabled or inert; no JS behavior required).",
+    "In app.html add a side panel 'Your helper' reading 'No helper connected yet. Choose someone you trust.' with a 'Choose a helper' button; a 'Preferences' list with 'Voice and appearance', 'Text size and motion', 'Help and tutorials'; and a short 'Helper view' note explaining it shows connected people and the issue summaries they approved for sharing. Ensure the side panel stacks below the chat on mobile.",
+    "Final consistency pass: open all six pages and confirm the shared skip-link + header/nav + footer are identical (same links/order/targets; app.html differs only by Account label), each page marks its own nav link aria-current, heading order is correct per page, and all interactive controls meet 44x44px.",
+    "Final accessibility pass: Tab through each page confirming skip-link-first and visible focus throughout; emulate prefers-reduced-motion and confirm intro/video stay paused with no transitions; confirm AA contrast on buttons and text; confirm each page stacks to a single column under 640px.",
+    "Final safety pass: grep the whole workspace root for payment tokens and confirm none exist anywhere in the site."
+  ],
+  "acceptance_criteria": [
+    "app.html exists in the workspace root, links styles.css and main.js, and its nav's last link reads 'Account' and is marked aria-current='page'.",
+    "app.html shows the top mockup note, the chat mockup (Teki message + labeled input + Send), the 'Your helper' side panel + 'Choose a helper' button, the Preferences list, and the Helper view note; the side panel stacks below chat on mobile.",
+    "All six pages share identical nav/footer/skip-link markup (modulo the active link and app.html's Account label).",
+    "Every page: skip link is the first focusable element, all controls show visible focus, 44x44px targets, AA contrast, reduced-motion honored, single-column under 640px.",
+    "No payment/Stripe/checkout/card/purchase content exists anywhere in the workspace-root HTML."
+  ],
+  "verification": [
+    "Open app.html in a browser: confirm nav shows 'Account' (aria-current), the mockup note is visible, and the chat/side panel/preferences/helper-view are present; confirm no JS console errors.",
+    "Resize app.html below 640px and confirm the side panel stacks below the chat.",
+    "Tab through all six pages confirming skip-link-first and visible focus on every control.",
+    "In devtools emulate prefers-reduced-motion: reduce on index.html and help.html and confirm the intro/video show no motion.",
+    "Run `grep -riE 'stripe|checkout|card number|purchase|add to cart|pay now' /Users/zaynab/Desktop/Teki2/*.html` and confirm ZERO matches across all six pages."
+  ],
+  "blocked_reason": null,
+  "findings": {
+    "summary": "Created app.html in the workspace root. It copies the FEAT-001 shared layout block verbatim, with the final nav link changed from 'Sign in' to 'Account' (href stays app.html) and marked class='active' aria-current='page'. It links styles.css and main.js. Content: a top mockup notice (role='note') stating this is a proposed interface mockup, not working account features; a chat mockup under h1 'What can Teki help you with?' with a Teki message bubble containing the exact required copy, a labeled text input ('Type your question...') and a 'Send' button (both disabled/inert, no JS behavior); a 'Your helper' side panel reading 'No helper connected yet. Choose someone you trust.' with a 'Choose a helper' button; a 'Preferences' list (Voice and appearance / Text size and motion / Help and tutorials); and a 'Helper view' note. The side panel stacks below the chat under 640px. Ran the final consistency, accessibility, and safety passes across all six pages.",
+    "app_layout": "Two-column CSS grid .app-layout (chat 2fr + .app-side 1fr) added to styles.css; it collapses to a single column in the existing @media (max-width:640px) block so the side panel stacks below the chat on mobile. New classes added: .app-layout, .chat, .chat-bubble, .chat-from, .chat-input (with labeled, min-44px input), .app-side, .prefs-list, .notice, .visually-hidden. Also added the previously-missing .eyebrow rule (distinct uppercase kicker) that index.html and how-it-works.html already referenced (closes the FEAT-002 deviation).",
+    "consistency_pass": "Shared skip-link + header/nav block is byte-identical across all six pages after normalizing the active marker and the Account/Sign-in label (md5 5e90ff46242ffac7d5d54c47648153c7 for all six). Footer block is byte-identical across all six (md5 a33bc6c3bd7fc71e0693cc0160e4c021). Nav link order/targets unchanged: Home, How it works, Your helper, Plans, Help, then Sign in (Account on app.html). Each page marks only its own nav link aria-current='page'/active. Heading order verified per page with no skipped levels on descent.",
+    "accessibility_pass": "The skip-link is the first element after <body> on every page (so first in focus order). Visible focus preserved via the global :focus-visible outline (unchanged). All interactive controls use .btn (>=44px) or nav/skip links (nav a min-height 44px); the chat input gets min-height 44px. AA contrast holds (ink-on-tints, white-on-blue per established tokens). prefers-reduced-motion block unchanged and still suppresses the .media-placeholder.playing animation. All six pages collapse to a single column under 640px (app-layout now included in the mobile block). The app.html chat input and Send button are intentionally disabled per the mockup spec (non-functional), with the visible <label> satisfying the association requirement.",
+    "safety_pass": "`grep -riE 'stripe|checkout|card number|purchase|add to cart|pay now' *.html` returns ZERO matches across all six pages (exit 1, no output). 'card' appears only in CSS class names, never as payment content.",
+    "verification": "All six pages parse as well-formed HTML (balanced-tag check passes). styles.css still contains prefers-reduced-motion, focus-visible, max-width:640px, and the palette tokens. No server needed; pages open via file://. No JS console errors expected on app.html (main.js no-ops cleanly since app.html has no [data-toggle='play'] controls).",
+    "deviations": [
+      "app.html chat input/Send are disabled (inert) as the spec allows ('buttons may be disabled or inert; no JS behavior required'); disabled controls are not in the tab order, which is intended for a non-functional mockup. The enabled 'Choose a helper' button remains keyboard-focusable.",
+      "Added an .eyebrow style rule during the consistency pass (purely visual kicker styling); this resolves the optional FEAT-002 deviation and changes nothing structurally."
+    ]
+  }
+}
