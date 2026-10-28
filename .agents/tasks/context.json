@@ -1,0 +1,44 @@
+{
+  "project_type": "Static marketing website — plain HTML/CSS/JS, no framework, no build step, opened directly via file:// in a browser",
+  "language": "HTML5, CSS3, vanilla JavaScript (ES2015+, no modules required)",
+  "build_system": "NONE. There is no package.json, no bundler, no transpile step. Do not add one. Files are authored by hand in the workspace root and previewed by opening the .html directly. Do NOT add npm/node/build tooling.",
+  "test_framework": "NONE automated. Verification is manual: open the page in a browser (or render it) and confirm structure/behavior. Static checks: HTML well-formedness and absence of forbidden payment tokens.",
+  "build_command": "No build. To sanity-check a page loads without needing a server, open file:///Users/zaynab/Desktop/Teki2/<page>.html. Optional local preview: `python3 -m http.server 8000` from the workspace root, then visit http://localhost:8000/.",
+  "test_command": "Manual browser check per page. Forbidden-token guard: run `grep -riE 'stripe|checkout|card number|purchase|add to cart|pay now' /Users/zaynab/Desktop/Teki2/*.html` and confirm ZERO matches.",
+  "verification_instructions": "For each page: (1) open it in a browser; (2) press Tab from page top — the first focusable element must be the skip-to-content link, and every focusable control must show a visible focus outline; (3) confirm the shared nav marks the current page with aria-current=page; (4) in browser devtools emulate prefers-reduced-motion: reduce and confirm the intro/video animation stays paused and transitions are suppressed; (5) resize below ~640px and confirm layout stacks to a single column; (6) confirm no JavaScript console errors. Site-wide: grep for payment tokens must return nothing.",
+  "snapshot_or_generated_files": null,
+  "environment_constraints": "macOS, zsh. No server required to preview (file:// works). Do NOT introduce a build step or framework — the user explicitly wants to open files directly. All files must live in the workspace root /Users/zaynab/Desktop/Teki2 (NOT in .agents, which is artifacts only).",
+  "contribution_requirements": "No repo docs (README/AGENTS/CONTRIBUTING/.kiro steering) exist — none were found. Follow the spec in the original task and the proposal PDF. Hard requirements: WCAG AA accessibility throughout; semantic HTML (header/nav/main/section/footer, ordered headings); skip-to-content link; visible focus states (never remove outlines without replacement); min 44x44px touch targets; honor prefers-reduced-motion; responsive single-column mobile layout; NO Stripe/payment/checkout/card/purchase anywhere.",
+  "key_patterns": "Shared layout is hand-copied identically into every page (no templating, since no build): skip-link, <header> with brand 'Teki' + <nav aria-label='Main'> (Home, How it works, Your helper, Plans, Help, Sign in), <main id='main'>, shared <footer>. Current page link gets aria-current='page' and class 'active'. On app.html the last nav link reads 'Account' instead of 'Sign in'. Buttons use .btn/.btn-primary (blue brand #0867ca)/.btn-secondary. Soft cards use tint classes. main.js is progressive-enhancement only (aria-pressed toggles, reduced-motion aware).",
+  "design_tokens": {
+    "ink_text": "#162f3f",
+    "primary_action_blue": "#0867ca",
+    "bg_white": "#ffffff",
+    "bg_offwhite": "#f6faf8",
+    "card_mint": "#e6f2eb",
+    "card_lavender": "#ede9f8",
+    "card_blue": "#e8f2fb",
+    "card_grey": "#eff2f4",
+    "note": "Palette sampled directly from the proposal PDF Home mock (page 2). Base font >= 1.125rem. Contrast: ink on white ~13:1, white on #0867ca ~5.3:1 (both pass AA)."
+  },
+  "placeholders_needing_confirmation": [
+    "Dog animation asset ('George's dog intro') — use a labeled SVG placeholder box only",
+    "Plan name / price / billing period — keep bracketed [Plan name], [Price] / [billing period]",
+    "Helper permission rules (invitation method, exact shared info, revoke/disconnect behavior)",
+    "Tutorial video + transcript (Zaynab's walkthrough) — placeholder box with stub written steps + short transcript",
+    "'Start with Teki' target: guest vs account — links to app.html for now"
+  ],
+  "relevant_files": [
+    "/Users/zaynab/Desktop/Teki2/Teki_Website_Layout_Proposal.pdf (source spec, 8 pages)",
+    "/Users/zaynab/Desktop/Teki2/styles.css (to create — shared)",
+    "/Users/zaynab/Desktop/Teki2/main.js (to create — shared)",
+    "/Users/zaynab/Desktop/Teki2/index.html (to create)",
+    "/Users/zaynab/Desktop/Teki2/how-it-works.html (to create)",
+    "/Users/zaynab/Desktop/Teki2/your-helper.html (to create)",
+    "/Users/zaynab/Desktop/Teki2/plans.html (to create)",
+    "/Users/zaynab/Desktop/Teki2/help.html (to create)",
+    "/Users/zaynab/Desktop/Teki2/app.html (to create)",
+    "/Users/zaynab/Desktop/Teki2/.agents/tasks/plan.md (fallback plan, already written)"
+  ],
+  "directory_structure": "Workspace root /Users/zaynab/Desktop/Teki2 currently holds only the proposal PDF. All site files go in the root. .agents/tasks/ holds planning artifacts only and must never be referenced by the site or committed into site content."
+}

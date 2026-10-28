@@ -1,0 +1,7 @@
+{
+  "task_id": "task-teki-website",
+  "task_description": "Build a static, accessibility-first marketing website for Teki (AI tech-help with a dog mascot): 6 hand-authored HTML pages sharing one styles.css and one main.js, no framework, no build step, openable directly in a browser. Warm light theme, blue action buttons, chosen-helper model, NO payment/Stripe anywhere. Grounded in Teki_Website_Layout_Proposal.pdf.",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null
+}
