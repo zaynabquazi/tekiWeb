@@ -1,0 +1,65 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Shared foundation for the whole site: styles.css (design tokens + accessible components) and main.js (reduced-motion-aware toggles). Establishes the reusable layout block (skip-link, header+nav, main, footer) and all shared component classes that FEAT-002 and FEAT-003 pages consume. Independent of other FEATs' page content, but both later FEATs depend on this one, so it MUST come first.",
+  "status": "completed",
+  "steps": [
+    "Create /Users/zaynab/Desktop/Teki2/styles.css. Define :root CSS custom properties for the palette from context.json design_tokens (--ink #162f3f, --blue #0867ca, --bg #ffffff, --bg-soft #f6faf8, --card-mint #e6f2eb, --card-lavender #ede9f8, --card-blue #e8f2fb, --card-grey #eff2f4) plus a spacing scale and radius.",
+    "In styles.css add base styles: box-sizing border-box reset, body font-family system UI stack, base font-size >= 1.125rem, line-height ~1.6, color var(--ink), background var(--bg). Headings sized in a clear descending scale.",
+    "In styles.css add the shared component classes used by the hand-copied layout block: .skip-link (visually offscreen until :focus, then pinned top-left with a solid background), .site-header, .brand, .nav (horizontal flex, wraps on small screens), .nav a, .nav a.active (uses aria-current styling with a distinct underline/weight), .site-footer.",
+    "In styles.css add .btn base (inline-flex, min-height 44px, min-width 44px, padding, radius, pointer cursor, no text-decoration), .btn-primary (background var(--blue), white text — confirm AA contrast), .btn-secondary (transparent/soft with var(--blue) border and ink text). Ensure disabled/mockup buttons still meet 44px.",
+    "In styles.css add content components: .card (soft background via modifier classes .card--mint/.card--lavender/.card--blue/.card--grey, radius, padding, subtle box-shadow) with :hover and :focus-within response (transform/shadow), .panel (for side-by-side helper panels), .steps / ordered-step styling, .plan-card, .topic-grid, .media-placeholder (the animation/video box) styling.",
+    "In styles.css add accessibility rules: a global :focus-visible outline (e.g. 3px solid var(--blue) with offset) that is NEVER removed without replacement; a @media (prefers-reduced-motion: reduce) block that sets animation and transition to none and ensures the .media-placeholder.playing state shows no motion; a responsive @media (max-width: 640px) block that stacks nav, panels, card grids, and side layouts into a single column.",
+    "Create /Users/zaynab/Desktop/Teki2/main.js as a plain script (no modules). On DOMContentLoaded, detect prefers-reduced-motion via window.matchMedia('(prefers-reduced-motion: reduce)').matches.",
+    "In main.js implement a generic toggle wiring: for each element with [data-toggle='play'] (the intro Play/Pause and the video Play/Captions controls), on click flip aria-pressed, update the visible label, and toggle a 'playing' (or 'captions-on') class on the target referenced by aria-controls. If reduced motion is set, start in the paused state and keep motion suppressed (class may toggle but CSS prevents animation).",
+    "In main.js guard every lookup so pages WITHOUT these controls (e.g. plans.html) throw no errors; the script must no-op cleanly when the elements are absent.",
+    "Author a canonical shared layout block (skip-link + header/nav + footer) as the reference that FEAT-002/FEAT-003 copy verbatim; record the exact HTML of that block in this FEAT's findings so later FEATs copy it identically (nav links: Home index.html, How it works how-it-works.html, Your helper your-helper.html, Plans plans.html, Help help.html, Sign in app.html)."
+  ],
+  "acceptance_criteria": [
+    "styles.css exists in the workspace root and defines all palette tokens and the component classes listed above.",
+    "main.js exists in the workspace root, is a plain non-module script, and reads prefers-reduced-motion.",
+    "A :focus-visible outline rule exists and no rule removes outline without a visible replacement.",
+    "A @media (prefers-reduced-motion: reduce) block and a mobile single-column @media (max-width: 640px) block both exist.",
+    "The exact shared layout HTML block is recorded in this FEAT's findings for reuse.",
+    "main.js produces no console errors when loaded on a page that has none of the toggle controls."
+  ],
+  "verification": [
+    "Create a throwaway minimal HTML file in the workspace root that links styles.css and main.js and contains one [data-toggle='play'] button with aria-controls pointing to a .media-placeholder, open it in a browser, click the button and confirm aria-pressed and the label flip and the 'playing' class toggles with no console errors; then delete the throwaway file.",
+    "Run `grep -nE 'prefers-reduced-motion|focus-visible|max-width: *640px|--blue|--ink' /Users/zaynab/Desktop/Teki2/styles.css` and confirm each concern is present.",
+    "Open browser devtools, emulate prefers-reduced-motion: reduce on the throwaway page, and confirm no motion occurs when toggled."
+  ],
+  "blocked_reason": null,
+  "findings": {
+    "summary": "styles.css and main.js created in the workspace root. All palette tokens, component classes, :focus-visible outline, prefers-reduced-motion block, and max-width:640px single-column block are present. main.js is a plain (non-module) IIFE script that reads prefers-reduced-motion, wires [data-toggle='play'] controls (flips aria-pressed, swaps label via data-label-on/off, toggles the state class on the aria-controls target), starts paused under reduced motion, and no-ops with zero console errors on pages that have no such controls. Verified via headless simulation: toggle flip, label flip, class toggle, no-op case, and reduced-motion-start-paused case all pass.",
+    "shared_layout_block_instructions": "Copy this block VERBATIM into every page. On each page, add aria-current=\"page\" and class=\"active\" to THAT page's own nav link only (remove them from the others). On app.html ONLY, change the final nav link text from 'Sign in' to 'Account' (href stays app.html) and treat it as the active link there. The example below shows index.html as the current page.",
+    "shared_layout_html_block": "<a class=\"skip-link\" href=\"#main\">Skip to content</a>\n<header class=\"site-header\">\n  <div class=\"container\">\n    <a class=\"brand\" href=\"index.html\">Teki</a>\n    <nav class=\"nav\" aria-label=\"Main\">\n      <a href=\"index.html\" class=\"active\" aria-current=\"page\">Home</a>\n      <a href=\"how-it-works.html\">How it works</a>\n      <a href=\"your-helper.html\">Your helper</a>\n      <a href=\"plans.html\">Plans</a>\n      <a href=\"help.html\">Help</a>\n      <a href=\"app.html\">Sign in</a>\n    </nav>\n  </div>\n</header>\n\n<main id=\"main\">\n  <!-- page content goes here -->\n</main>\n\n<footer class=\"site-footer\">\n  <div class=\"container\">\n    <p>Teki &mdash; a gentle helper for getting things done.</p>\n  </div>\n</footer>",
+    "head_includes_required": "Every page <head> must include: <meta charset=\"utf-8\">, <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">, <link rel=\"stylesheet\" href=\"styles.css\">. Before </body> include: <script src=\"main.js\"></script>. Set <html lang=\"en\">.",
+    "component_class_names": [
+      ".container",
+      ".skip-link",
+      ".site-header",
+      ".brand",
+      ".nav",
+      ".nav a",
+      ".nav a.active",
+      ".site-footer",
+      ".btn",
+      ".btn-primary",
+      ".btn-secondary",
+      ".card",
+      ".card--mint",
+      ".card--lavender",
+      ".card--blue",
+      ".card--grey",
+      ".panel-group",
+      ".panel",
+      ".steps",
+      ".plan-grid",
+      ".plan-card",
+      ".topic-grid",
+      ".media-placeholder",
+      ".media-placeholder.playing"
+    ],
+    "toggle_control_contract": "A play/pause control is a <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"play\" aria-pressed=\"false\" aria-controls=\"<targetId>\" data-label-on=\"Pause\" data-label-off=\"Play\">Play</button> and the target element (e.g. the .media-placeholder) must have id=\"<targetId>\". For a captions control add data-mode=\"captions\" (toggles the 'captions-on' class instead of 'playing'); an explicit state class can be set with data-state-class. Labels swap only when both data-label-on and data-label-off are present."
+  }
+}

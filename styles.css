@@ -1,0 +1,423 @@
+/* ==========================================================================
+   Teki — shared styles
+   Hand-authored, no build step. Palette sampled from the proposal PDF.
+   ========================================================================== */
+
+/* ---- Design tokens ------------------------------------------------------ */
+:root {
+  /* Palette */
+  --ink: #162f3f;
+  --blue: #0867ca;
+  --bg: #ffffff;
+  --bg-soft: #f6faf8;
+  --card-mint: #e6f2eb;
+  --card-lavender: #ede9f8;
+  --card-blue: #e8f2fb;
+  --card-grey: #eff2f4;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 20px;
+
+  /* Elevation */
+  --shadow: 0 1px 2px rgba(22, 47, 63, 0.06), 0 6px 18px rgba(22, 47, 63, 0.08);
+  --shadow-hover: 0 2px 4px rgba(22, 47, 63, 0.08), 0 12px 28px rgba(22, 47, 63, 0.14);
+
+  /* Layout */
+  --maxw: 72rem;
+}
+
+/* ---- Reset / base ------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Headings — clear descending scale */
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0 0 var(--space-4);
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+}
+
+h3 {
+  font-size: 1.375rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+p {
+  margin: 0 0 var(--space-4);
+}
+
+a {
+  color: var(--blue);
+}
+
+/* Shared content width wrapper */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+/* ---- Skip link ---------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  padding: var(--space-3) var(--space-4);
+  background: var(--blue);
+  color: #ffffff;
+  border-radius: 0 0 var(--radius-sm) 0;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* ---- Header / nav ------------------------------------------------------- */
+.site-header {
+  border-bottom: 1px solid var(--card-grey);
+  background: var(--bg);
+}
+
+.site-header .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+  padding-block: var(--space-4);
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-5);
+  margin-left: auto;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--space-1) var(--space-1);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav a:hover {
+  color: var(--blue);
+}
+
+.nav a.active {
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+/* ---- Footer ------------------------------------------------------------- */
+.site-footer {
+  margin-top: var(--space-8);
+  border-top: 1px solid var(--card-grey);
+  background: var(--bg-soft);
+  color: var(--ink);
+}
+
+.site-footer .container {
+  padding-block: var(--space-6);
+}
+
+/* ---- Buttons ------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: var(--space-3) var(--space-5);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--card-grey);
+  color: var(--ink);
+}
+
+.btn-primary {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #ffffff; /* white on #0867ca ~5.3:1 — passes AA */
+}
+
+.btn-primary:hover {
+  background: #0a5bb0;
+  border-color: #0a5bb0;
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--blue);
+  color: var(--ink);
+}
+
+.btn-secondary:hover {
+  background: var(--card-blue);
+}
+
+.btn[disabled],
+.btn[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---- Cards -------------------------------------------------------------- */
+.card {
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  background: var(--card-grey);
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card--mint {
+  background: var(--card-mint);
+}
+
+.card--lavender {
+  background: var(--card-lavender);
+}
+
+.card--blue {
+  background: var(--card-blue);
+}
+
+.card--grey {
+  background: var(--card-grey);
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ---- Panels (side-by-side helper layout) -------------------------------- */
+.panel-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-5);
+}
+
+.panel {
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  border: 1px solid var(--card-grey);
+}
+
+/* ---- Steps (ordered walkthrough) ---------------------------------------- */
+.steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-5);
+}
+
+.steps > li {
+  counter-increment: step;
+  position: relative;
+  padding-left: calc(var(--space-7) + var(--space-2));
+}
+
+.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--space-7);
+  height: var(--space-7);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ---- Plan cards --------------------------------------------------------- */
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-5);
+}
+
+.plan-card {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--bg-soft);
+  border: 1px solid var(--card-grey);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ---- Topic grid (help topics) ------------------------------------------- */
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-4);
+}
+
+/* ---- Media placeholder (animation / video box) -------------------------- */
+.media-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  min-height: 16rem;
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  background: var(--card-blue);
+  border: 2px dashed var(--blue);
+  text-align: center;
+}
+
+/* Animated state — motion only runs when reduced motion is NOT requested */
+.media-placeholder.playing {
+  animation: teki-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes teki-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+/* ---- Accessibility: focus -------------------------------------------------
+   Visible focus indicator. Never removed without a visible replacement. */
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ---- Reduced motion ----------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Even when the playing class is applied, keep the box motionless. */
+  .media-placeholder.playing {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ---- Responsive: single column on small screens ------------------------- */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .site-header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav {
+    margin-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .panel-group,
+  .plan-grid,
+  .topic-grid {
+    grid-template-columns: 1fr;
+  }
+}
