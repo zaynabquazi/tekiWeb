@@ -1,0 +1,5 @@
+# Kiro workflow artifacts — not part of the site
+.agents/
+
+# macOS
+.DS_Store
