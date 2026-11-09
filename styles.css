@@ -477,6 +477,62 @@ main > section:first-child h1 + p {
   text-align: center;
 }
 
+/* ---- Plans page two-column layout -------------------------------------- */
+.plans-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: var(--space-6);
+  align-items: start;
+  margin-top: var(--space-6);
+}
+
+.plan-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: var(--space-2);
+}
+
+.plan-name {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-2);
+}
+
+.plan-price-display {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: var(--space-4);
+  line-height: 1;
+}
+
+.why-price-panel {
+  padding: var(--space-6);
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  border: 1px solid var(--card-grey);
+}
+
+.why-price-panel h2 {
+  margin-bottom: var(--space-4);
+}
+
+.plan-faq-note {
+  margin-top: var(--space-5);
+  font-weight: 600;
+  color: var(--ink);
+  opacity: 0.7;
+}
+
+@media (max-width: 640px) {
+  .plans-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---- Responsive video embed (HeyGen intro) ----------------------------- */
 .video-embed {
   position: relative;
