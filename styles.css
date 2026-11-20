@@ -300,6 +300,9 @@ main > section:first-child h1 + p {
   background: var(--gray);
   border-color: var(--blue);
   color: #ffffff; /* white on #0867ca ~5.3:1 — passes AA */
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.5;
 }
 
 .btn-primary:hover {
@@ -317,6 +320,9 @@ main > section:first-child h1 + p {
   background: var(--gray);
   border-color: var(--blue);
   color: var(--ink);
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.5;
 }
 
 .btn-secondary:hover {
