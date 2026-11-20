@@ -8,6 +8,7 @@
   /* Palette */
   --ink: #162f3f;
   --blue: #0867ca;
+  --gray: #555555;
   --bg: #ffffff;
   --bg-soft: #f6faf8;
 
@@ -295,6 +296,12 @@ main > section:first-child h1 + p {
   color: #ffffff; /* white on #0867ca ~5.3:1 — passes AA */
 }
 
+.btn-primary-disabled {
+  background: var(--gray);
+  border-color: var(--blue);
+  color: #ffffff; /* white on #0867ca ~5.3:1 — passes AA */
+}
+
 .btn-primary:hover {
   background: #0a5bb0;
   border-color: #0a5bb0;
@@ -302,6 +309,12 @@ main > section:first-child h1 + p {
 
 .btn-secondary {
   background: transparent;
+  border-color: var(--blue);
+  color: var(--ink);
+}
+
+.btn-secondary-disabled {
+  background: var(--gray);
   border-color: var(--blue);
   color: var(--ink);
 }
